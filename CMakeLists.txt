@@ -22,7 +22,6 @@ endif()
 # Options
 option(OPTICK_USE_VULKAN "Built-in support for Vulkan" OFF)
 option(OPTICK_USE_D3D12 "Built-in support for DirectX 12" OFF)
-option(OPTICK_BUILD_CONSOLE_SAMPLE "Build Optick console sample app" ${standalone})
 
 
 # OptickCore
