@@ -1,16 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 project(Optick LANGUAGES CXX)
 
-# hacks for standalone builds with visual studio
-if(MSVC AND CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
-	message(STATUS "Standalone build")
-	list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/Build")
-	set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "" FORCE)
-	set(standalone ON)
-else()
-	set(standalone OFF)
-endif()
-
 
 # Sources
 file(GLOB OPTICK_SRC "src/*.*")
@@ -60,19 +50,3 @@ if(MSVC)
 	# temporary solution to unblock C++17 users
 	target_compile_definitions(OptickCore PRIVATE _SILENCE_ALL_CXX17_DEPRECATION_WARNINGS)
 endif()
-
-set(EXTRA_LIBS ${EXTRA_LIBS} OptickCore)
-if(NOT MSVC)
-	set(EXTRA_LIBS ${EXTRA_LIBS} pthread)
-endif()
-
-# Console App
-if(OPTICK_BUILD_CONSOLE_SAMPLE)
-	file(GLOB TEST_ENGINE_SRC "samples/Common/TestEngine/*.*")
-	source_group("TestEngine" FILES ${TEST_ENGINE_SRC})
-	add_executable(ConsoleApp "samples/ConsoleApp/main.cpp" ${TEST_ENGINE_SRC})
-	target_include_directories(ConsoleApp PRIVATE "samples/Common/TestEngine")
-	target_link_libraries(ConsoleApp ${EXTRA_LIBS})
-	set_target_properties(ConsoleApp PROPERTIES FOLDER Samples)
-endif()
-
