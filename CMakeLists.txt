@@ -37,7 +37,7 @@ option(OPTICK_BUILD_CONSOLE_SAMPLE "Build Optick console sample app" ${standalon
 
 
 # OptickCore
-add_library(OptickCore SHARED ${OPTICK_SRC})
+add_library(OptickCore STATIC ${OPTICK_SRC})
 target_include_directories(OptickCore PUBLIC "src")
 target_compile_definitions(OptickCore PUBLIC OPTICK_EXPORTS=1)
 if(OPTICK_USE_VULKAN)
