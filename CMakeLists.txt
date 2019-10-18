@@ -1,11 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 project(Optick LANGUAGES CXX)
 
-
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-set(CMAKE_CXX_STANDARD 11)
-
-
 # hacks for standalone builds with visual studio
 if(MSVC AND CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
 	message(STATUS "Standalone build")
